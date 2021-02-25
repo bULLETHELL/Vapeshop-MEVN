@@ -16,7 +16,7 @@ import HomeComponent from "./components/HomeComponent.vue";
 import CreateComponent from "./components/CreateComponent.vue";
 import IndexComponent from "./components/IndexComponent.vue";
 import EditComponent from "./components/EditComponent.vue";
-
+import CreateE_juiceComponent from "./components/CreateE_juiceComponent"
 const routes = [
     {
         name: "home",
@@ -37,6 +37,11 @@ const routes = [
         name: "edit",
         path: "/edit/:id",
         component: EditComponent,
+    },
+    {
+        name: "addEjuice",
+        path: "/add_ejuice",
+        component: CreateE_juiceComponent,
     },
 ];
 

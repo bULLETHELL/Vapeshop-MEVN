@@ -31,12 +31,7 @@
                         >
                     </td>
                     <td>
-                        <button
-                            class="btn btn-danger"
-                            @click.prevent="deletePost(post._id)"
-                        >
-                            Delete
-                        </button>
+                        <button class="btn btn-danger" @click.prevent="deletePost(post._id)">Delete</button>
                     </td>
                 </tr>
             </tbody>
