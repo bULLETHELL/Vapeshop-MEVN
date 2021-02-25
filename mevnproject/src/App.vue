@@ -21,7 +21,10 @@
           <router-link to="/batteries_and_mods" class="nav-link">Batteries and Mods</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/accessories" class="nav-link">accessories</router-link>
+          <router-link to="/accessories" class="nav-link">Accessories</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/add_ejuice" class="nav-link">Add E-juice</router-link>
         </li>
       </ul>
     </nav><br />
