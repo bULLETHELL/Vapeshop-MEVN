@@ -1,17 +1,17 @@
-// IndexComponent.vue
-
 <template>
     <div>
         <h1>Posts</h1>
-        <div>
-            <div></div>
-            <div>
-                <router-link :to="{ name: 'create' }">Create Post</router-link>
+        <div class="row">
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
+                <router-link :to="{ name: 'create' }" class="btn btn-primary"
+                    >Create Post</router-link
+                >
             </div>
         </div>
         <br />
 
-        <table>
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Title</th>
@@ -26,11 +26,15 @@
                     <td>
                         <router-link
                             :to="{ name: 'edit', params: { id: post._id } }"
+                            class="btn btn-primary"
                             >Edit</router-link
                         >
                     </td>
                     <td>
-                        <button @click.prevent="deletePost(post._id)">
+                        <button
+                            class="btn btn-danger"
+                            @click.prevent="deletePost(post._id)"
+                        >
                             Delete
                         </button>
                     </td>
@@ -48,15 +52,15 @@ export default {
         };
     },
     created() {
-        let uri = "//localhost:4000/posts";
+        let uri = "http://localhost:4000/posts";
         this.axios.get(uri).then((response) => {
             this.posts = response.data;
         });
     },
     methods: {
         deletePost(id) {
-            let uri = `//localhost:4000/posts/delete/${id}`;
-            this.axios.delete(uri).then((response) => {
+            let uri = `http://localhost:4000/posts/delete/${id}`;
+            this.axios.delete(uri).then(() => {
                 this.posts.splice(this.posts.indexOf(id), 1);
             });
         },
