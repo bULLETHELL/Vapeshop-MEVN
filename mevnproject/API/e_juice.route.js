@@ -4,7 +4,7 @@ const express = require("express");
 const e_juiceRoutes = express.Router();
 
 // Require E_juice model in our routes module
-let E_juice = require("./post.model");
+let E_juice = require("./e_juice.model");
 
 // Defined store route
 e_juiceRoutes.route("/add").post(function(req, res) {

@@ -80,7 +80,7 @@ export default {
     methods: {
         addE_juice() {
             let uri = "http://localhost:4000/e_juices/add";
-            this.axios.post(uri, this.post).then(() => {
+            this.axios.post(uri, this.e_juice).then(() => {
                 this.$router.push({ name: "e_juices" });
             });
         },
