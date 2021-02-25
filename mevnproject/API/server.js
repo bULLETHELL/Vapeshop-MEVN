@@ -13,7 +13,8 @@ const AdminBro = require('admin-bro')
 const AdminBroExpress = require('@admin-bro/express')
 const AdminBroMongoose = require('@admin-bro/mongoose')
 
-require('./post.model')
+const Post = require('./post.model')
+const E_juice = require('./e_juice.model')
 
 AdminBro.registerAdapter(AdminBroMongoose)
 
@@ -24,7 +25,7 @@ const connection = mongoose.connect(config.DB, { useNewUrlParser: true }).then(
 );
 
 const adminBro = new AdminBro({
-    Databases: [connection],
+    resources: [E_juice],
     rootPath: '/admin',
 })
 
