@@ -11,6 +11,18 @@
         <li class="nav-item">
           <router-link to="/posts" class="nav-link">Posts</router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/e-juice" class="nav-link">E-juice</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/tanks_and_coils" class="nav-link">Tanks and Coils</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/batteries_and_mods" class="nav-link">Batteries and Mods</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/accessories" class="nav-link">accessories</router-link>
+        </li>
       </ul>
     </nav><br />
     <div class="container">
