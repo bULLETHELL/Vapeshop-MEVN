@@ -7,14 +7,14 @@ const PORT = 4000;
 const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./DB.js');
-const postRoute = require('./post.route');
-const e_juiceRoute = require('./e_juice.route');
+const postRoute = require('./routes/post.route');
+const e_juiceRoute = require('./routes/e_juice.route');
 const AdminBro = require('admin-bro')
 const AdminBroExpress = require('@admin-bro/express')
 const AdminBroMongoose = require('@admin-bro/mongoose')
 
-const Post = require('./post.model')
-const E_juice = require('./e_juice.model')
+const Post = require('./models/post.model')
+const E_juice = require('./models/e_juice.model')
 
 AdminBro.registerAdapter(AdminBroMongoose)
 

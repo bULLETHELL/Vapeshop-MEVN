@@ -1,14 +1,14 @@
 // post.model.js
 
 const express = require("express");
-const e_juiceRoutes = express.Router();
+const postRoutes = express.Router();
 
-// Require E_juice model in our routes module
-let E_juice = require("./e_juice.model");
+// Require Post model in our routes module
+let Post = require("../models/post.model");
 
 // Defined store route
-e_juiceRoutes.route("/add").post(function(req, res) {
-    let post = new E_juice(req.body);
+postRoutes.route("/add").post(function(req, res) {
+    let post = new Post(req.body);
     post.save()
         .then(() => {
             res.status(200).json({
@@ -21,8 +21,8 @@ e_juiceRoutes.route("/add").post(function(req, res) {
 });
 
 // Defined get data(index or listing) route
-e_juiceRoutes.route("/").get(function(req, res) {
-    E_juice.find(function(err, posts) {
+postRoutes.route("/").get(function(req, res) {
+    Post.find(function(err, posts) {
         if (err) {
             res.json(err);
         } else {
@@ -32,9 +32,9 @@ e_juiceRoutes.route("/").get(function(req, res) {
 });
 
 // Defined edit route
-e_juiceRoutes.route("/edit/:id").get(function(req, res) {
+postRoutes.route("/edit/:id").get(function(req, res) {
     let id = req.params.id;
-    E_juice.findById(id, function(err, post) {
+    Post.findById(id, function(err, post) {
         if (err) {
             res.json(err);
         }
@@ -43,15 +43,12 @@ e_juiceRoutes.route("/edit/:id").get(function(req, res) {
 });
 
 //  Defined update route
-e_juiceRoutes.route("/update/:id").post(function(req, res) {
-    E_juice.findById(req.params.id, function(err, post) {
+postRoutes.route("/update/:id").post(function(req, res) {
+    Post.findById(req.params.id, function(err, post) {
         if (!post) res.status(404).send("data is not found");
         else {
-            post.name = req.body.name;
-            post.taste = req.body.taste;
-            post.vg = req.body.vg;
-            post.pg = req.body.pg;
-            post.nicotine = req.body.nicotine;
+            post.title = req.body.title;
+            post.body = req.body.body;
             post.save()
                 .then(() => {
                     res.json("Update complete");
@@ -64,11 +61,11 @@ e_juiceRoutes.route("/update/:id").post(function(req, res) {
 });
 
 // Defined delete | remove | destroy route
-e_juiceRoutes.route("/delete/:id").delete(function(req, res) {
-    E_juice.findByIdAndRemove({ _id: req.params.id }, function(err) {
+postRoutes.route("/delete/:id").delete(function(req, res) {
+    Post.findByIdAndRemove({ _id: req.params.id }, function(err) {
         if (err) res.json(err);
         else res.json("Successfully removed");
     });
 });
 
-module.exports = e_juiceRoutes;
+module.exports = postRoutes;
