@@ -11,9 +11,21 @@ let User = new Schema({
         type: String,
         required: true
     },
+    address: {
+        type: String,
+        required: true
+    },
+    zipCode: {
+        type: Number,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
     role: {
         type: String,
-        enum: ['admin', 'restricted'],
+        enum: ['admin', 'restricted', 'normal'],
         required: true
     },
 }, {

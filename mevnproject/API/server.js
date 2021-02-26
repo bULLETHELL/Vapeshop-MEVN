@@ -27,6 +27,8 @@ const connection = mongoose.connect(config.DB, { useNewUrlParser: true }).then(
     err => { console.log('Can not connect to the database' + err) }
 )
 
+const canModifyUsers = ({ currentAdmin }) => currentAdmin && currentAdmin.role == 'admin'
+
 const adminBro = new AdminBro({
     resources: [E_juice, {
         resource: User,
@@ -57,8 +59,11 @@ const adminBro = new AdminBro({
                         }
                         return request
                     },
-                }
-            }
+                },
+                edit: { isAccessible: canModifyUsers },
+                delete: { isAccessible: canModifyUsers },
+                new: { isAccessible: canModifyUsers },
+            },
         }
     }],
     rootPath: '/admin',
@@ -69,7 +74,7 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
         const user = await User.findOne({ email })
         if (user) {
             const matched = await bcrypt.compare(password, user.encryptedPassword)
-            if (matched) {
+            if (matched && user.role != 'normal') {
                 return user
             }
         }
@@ -78,12 +83,13 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
     cookiePassword: 'secret-password',
 })
 
+app.use(cors())
+app.use(adminBro.options.rootPath, router)
+
+
 app.use('/e_juices', e_juiceRoute);
 app.use('/addresses', addressRoute);
 app.use('/posts', postRoute)
-app.use(adminBro.options.rootPath, router)
-
-app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
