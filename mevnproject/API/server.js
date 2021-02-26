@@ -7,7 +7,6 @@ const PORT = 4000;
 const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./DB.js');
-const postRoute = require('./routes/post.route');
 const e_juiceRoute = require('./routes/e_juice.route');
 const addressRoute = require('./routes/address.route')
 const orderRoute = require('./routes/order.route')
@@ -17,7 +16,6 @@ const AdminBroExpress = require('@admin-bro/express')
 const AdminBroMongoose = require('@admin-bro/mongoose')
 const bcrypt = require('bcrypt')
 
-const Post = require('./models/post.model')
 const E_juice = require('./models/e_juice.model')
 const User = require('./models/user.model')
 
@@ -92,7 +90,6 @@ app.use(bodyParser.json())
 app.use('/e_juices', e_juiceRoute);
 app.use('/orders', orderRoute);
 app.use('/addresses', addressRoute);
-app.use('/posts', postRoute)
 app.use('/user', userRoute)
 
 app.listen(PORT, function() {

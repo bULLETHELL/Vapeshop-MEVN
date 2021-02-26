@@ -13,9 +13,6 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 import HomeComponent from "./components/HomeComponent.vue";
-import CreateComponent from "./components/CreateComponent.vue";
-import IndexComponent from "./components/IndexComponent.vue";
-import EditComponent from "./components/EditComponent.vue";
 import CreateE_juiceComponent from "./components/CreateE_juiceComponent.vue";
 import AddAddressComponent from "./components/AddAddressComponent.vue"
 import CreateOrderComponent from "./components/CreateOrderComponent"
@@ -25,21 +22,6 @@ const routes = [{
         name: "home",
         path: "/",
         component: HomeComponent,
-    },
-    {
-        name: "create",
-        path: "/create",
-        component: CreateComponent,
-    },
-    {
-        name: "posts",
-        path: "/posts",
-        component: IndexComponent,
-    },
-    {
-        name: "edit",
-        path: "/edit/:id",
-        component: EditComponent,
     },
     {
         name: "addEjuice",

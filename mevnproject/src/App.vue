@@ -14,12 +14,6 @@
           <router-link to="/" class="nav-link">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/create" class="nav-link">Create Post</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/posts" class="nav-link">Posts</router-link>
-        </li>
-        <li class="nav-item">
           <router-link to="/e-juice" class="nav-link">E-juice</router-link>
         </li>
         <li class="nav-item">
