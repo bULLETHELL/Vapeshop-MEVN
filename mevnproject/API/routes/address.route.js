@@ -8,8 +8,8 @@ let Address = require("../models/address.model");
 
 // Defined store route
 addressRoutes.route("/add").post(function(req, res) {
-    let post = new Address(req.body);
-    post.save()
+    let address = new Address(req.body);
+    address.save()
         .then(() => {
             res.status(200).json({
                 business: "business in added successfully",

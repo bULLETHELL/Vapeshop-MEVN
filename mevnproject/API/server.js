@@ -77,15 +77,17 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
     },
     cookiePassword: 'secret-password',
 })
+app.use(cors());
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 app.use('/e_juices', e_juiceRoute);
 app.use('/addresses', addressRoute);
-app.use('/posts', postRoute)
+app.use('/posts', postRoute);
 app.use(adminBro.options.rootPath, router)
 
-app.use(cors())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+
 
 app.listen(PORT, function() {
     console.log('Server is running on Port:', PORT)
