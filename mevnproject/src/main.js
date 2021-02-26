@@ -16,7 +16,8 @@ import HomeComponent from "./components/HomeComponent.vue";
 import CreateComponent from "./components/CreateComponent.vue";
 import IndexComponent from "./components/IndexComponent.vue";
 import EditComponent from "./components/EditComponent.vue";
-import CreateE_juiceComponent from "./components/CreateE_juiceComponent"
+import CreateE_juiceComponent from "./components/CreateE_juiceComponent.vue";
+import AddAddressComponent from "./components/AddAddressComponent.vue"
 const routes = [
     {
         name: "home",
@@ -43,6 +44,11 @@ const routes = [
         path: "/add_ejuice",
         component: CreateE_juiceComponent,
     },
+    {
+        name: "addAddress",
+        path: "/add_address",
+        component: AddAddressComponent
+    }
 ];
 
 const router = new VueRouter({ mode: "history", routes: routes });

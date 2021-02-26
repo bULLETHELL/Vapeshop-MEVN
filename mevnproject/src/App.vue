@@ -26,6 +26,9 @@
         <li class="nav-item">
           <router-link to="/add_ejuice" class="nav-link">Add E-juice</router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/add_address" class="nav-link">Add Address</router-link>
+        </li>
       </ul>
     </nav><br />
     <div class="container">

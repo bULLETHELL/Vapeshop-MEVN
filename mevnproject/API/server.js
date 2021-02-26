@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const config = require('./DB.js');
 const postRoute = require('./routes/post.route');
 const e_juiceRoute = require('./routes/e_juice.route');
+const addressRoute = require('./routes/address.route')
 const AdminBro = require('admin-bro')
 const AdminBroExpress = require('@admin-bro/express')
 const AdminBroMongoose = require('@admin-bro/mongoose')
@@ -37,6 +38,7 @@ app.use(bodyParser.json());
 
 app.use('/posts', postRoute);
 app.use('/e_juices', e_juiceRoute);
+app.use('/addresses', addressRoute);
 app.use(adminBro.options.rootPath, router)
 
 app.listen(PORT, function() {
