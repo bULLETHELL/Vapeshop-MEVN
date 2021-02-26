@@ -10,6 +10,7 @@ const config = require('./DB.js');
 const postRoute = require('./routes/post.route');
 const e_juiceRoute = require('./routes/e_juice.route');
 const addressRoute = require('./routes/address.route')
+const orderRoute = require('./routes/order.route')
 const AdminBro = require('admin-bro')
 const AdminBroExpress = require('@admin-bro/express')
 const AdminBroMongoose = require('@admin-bro/mongoose')
@@ -83,6 +84,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.use('/e_juices', e_juiceRoute);
+app.use('/orders', orderRoute);
 app.use('/addresses', addressRoute);
 app.use('/posts', postRoute);
 app.use(adminBro.options.rootPath, router)

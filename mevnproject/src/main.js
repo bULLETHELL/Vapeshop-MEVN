@@ -18,6 +18,7 @@ import IndexComponent from "./components/IndexComponent.vue";
 import EditComponent from "./components/EditComponent.vue";
 import CreateE_juiceComponent from "./components/CreateE_juiceComponent.vue";
 import AddAddressComponent from "./components/AddAddressComponent.vue"
+import CreateOrderComponent from "./components/CreateOrderComponent"
 const routes = [
     {
         name: "home",
@@ -48,7 +49,12 @@ const routes = [
         name: "addAddress",
         path: "/add_address",
         component: AddAddressComponent
-    }
+    },
+    {
+        name: "addOrder",
+        path: "/add_order",
+        component: CreateOrderComponent
+    },
 ];
 
 const router = new VueRouter({ mode: "history", routes: routes });

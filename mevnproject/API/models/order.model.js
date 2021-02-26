@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 let Order = new Schema(
     {
         orderingCustomer: {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
         },
         orderDate: {
             type: Date,

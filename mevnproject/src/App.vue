@@ -3,6 +3,14 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <ul class="navbar-nav">
         <li class="nav-item">
+          <router-link to="/" class="nav-link">some nav YYYYYYYYYYYYYYYYYYYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEETttt</router-link>
+        </li>
+      </ul>
+    </nav><br />
+    <div class="container">
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <ul class="navbar-nav">
+        <li class="nav-item">
           <router-link to="/" class="nav-link">Home</router-link>
         </li>
         <li class="nav-item">
@@ -29,9 +37,11 @@
         <li class="nav-item">
           <router-link to="/add_address" class="nav-link">Add Address</router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/add_order" class="nav-link">Add Order</router-link>
+        </li>
       </ul>
-    </nav><br />
-    <div class="container">
+    </nav>
       <transition name="fade">
       <router-view></router-view>
     </transition>
