@@ -1,6 +1,9 @@
 import Vue from "vue";
 import App from "./App.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap/"
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/js/all.js'
 
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
@@ -17,6 +20,7 @@ import CreateE_juiceComponent from "./components/CreateE_juiceComponent.vue";
 import AddAddressComponent from "./components/AddAddressComponent.vue"
 import CreateOrderComponent from "./components/CreateOrderComponent"
 import RegisterUserComponent from "./components/RegisterUserComponent.vue"
+
 
 const routes = [{
         name: "home",

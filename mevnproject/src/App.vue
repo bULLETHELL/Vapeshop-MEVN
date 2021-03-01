@@ -7,7 +7,27 @@
         </li>
       </ul>
     </nav><br />
+    <div class="d-flex justify-content-center">
+      <img src="./assets/test.png"/>
+    </div>
     <div class="container">
+      <div class="d-flex justify-content-between">
+        <div class="p-2"><img src="./assets/logo.png"/></div>
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" placeholder="Search" type="text"/>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle"
+                  type="button" id="dropdownMenu1" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">Dropdown</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <a class="dropdown-item" href="#!">Action</a>
+            <a class="dropdown-item" href="#!">Another action</a>
+          </div>
+        </div>
+      </div>
+      
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <ul class="navbar-nav">
         <li class="nav-item">
