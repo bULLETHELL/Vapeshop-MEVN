@@ -21,7 +21,7 @@ import AddAddressComponent from "./components/AddAddressComponent.vue"
 import CreateOrderComponent from "./components/CreateOrderComponent"
 import RegisterUserComponent from "./components/RegisterUserComponent.vue"
 import LoginUserComponent from "./components/LoginUserComponent.vue"
-
+import EjuiceIndexComponent from "./components/EjuiceIndexComponent"
 
 const routes = [{
         name: "home",
@@ -58,6 +58,11 @@ const routes = [{
         meta: {
             guest: true
         }
+    },
+    {
+        name: "indexEjuice",
+        path: "/e_juices",
+        component: EjuiceIndexComponent
     }
 ];
 

@@ -11,7 +11,7 @@ let Order = new Schema(
             type: Date,
         },
         products: {
-            type: Array,
+            type: [Object],
         },
         deliveryAddress: {
             type: mongoose.Schema.Types.ObjectId,

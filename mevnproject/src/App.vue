@@ -34,7 +34,7 @@
           <router-link to="/" class="nav-link">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/e-juice" class="nav-link">E-juice</router-link>
+          <router-link to="/e_juices" class="nav-link">E-juice</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/tanks_and_coils" class="nav-link">Tanks and Coils</router-link>
