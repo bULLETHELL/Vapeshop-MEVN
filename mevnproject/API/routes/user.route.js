@@ -8,7 +8,6 @@ const jwt = require('jsonwebtoken')
 const config = require('../config')
 
 userRoute.route('/add').post(function(req, res) {
-    console.log(req.body)
     let user = new User({
         email: req.body.email,
         encryptedPassword: bcrypt.hashSync(req.body.password, 10),
@@ -25,6 +24,22 @@ userRoute.route('/add').post(function(req, res) {
     })
 })
 
-userRoute.route('get').post(function(req, res) {})
+userRoute.route('/login').post(function(req, res) {
+    let email = req.body.email
+
+    async function authenticate() {
+        let user = await User.findOne({
+            email: req.body.email
+        })
+        console.log(user.email)
+        if (!user) return res.status(404).send('No user found.')
+        let passwordIsValid = await bcrypt.compare(req.body.password, user.encryptedPassword)
+        if (!passwordIsValid) return res.status(401).send({ auth: false, token: null })
+        let token = jwt.sign({ id: user.id }, config.secret, { expiresIn: 86400 })
+        res.status(200).send({ auth: true, token: token, user: user })
+    }
+
+    authenticate()
+})
 
 module.exports = userRoute;

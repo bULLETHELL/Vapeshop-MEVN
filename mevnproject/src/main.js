@@ -17,6 +17,7 @@ import CreateE_juiceComponent from "./components/CreateE_juiceComponent.vue";
 import AddAddressComponent from "./components/AddAddressComponent.vue"
 import CreateOrderComponent from "./components/CreateOrderComponent"
 import RegisterUserComponent from "./components/RegisterUserComponent.vue"
+import LoginUserComponent from "./components/LoginUserComponent.vue"
 
 const routes = [{
         name: "home",
@@ -42,6 +43,14 @@ const routes = [{
         name: "registerUser",
         path: "/register",
         component: RegisterUserComponent,
+        meta: {
+            guest: true
+        }
+    },
+    {
+        name: "loginUser",
+        path: "/login",
+        component: LoginUserComponent,
         meta: {
             guest: true
         }
