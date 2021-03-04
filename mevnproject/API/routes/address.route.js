@@ -44,13 +44,13 @@ addressRoutes.route("/edit/:id").get(function(req, res) {
 
 //  Defined update route
 addressRoutes.route("/update/:id").post(function(req, res) {
-    Address.findById(req.params.id, function(err, post) {
+    Address.findById(req.params.id, function(err, address) {
         if (!post) res.status(404).send("data is not found");
         else {
-            post.address = req.body.address;
-            post.city = req.body.city;
-            post.postalCode = req.body.postalCode;
-            post.save()
+            address.address = req.body.address;
+            address.city = req.body.city;
+            address.postalCode = req.body.postalCode;
+            address.save()
                 .then(() => {
                     res.json("Update complete");
                 })

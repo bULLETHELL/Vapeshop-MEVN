@@ -6,6 +6,9 @@ let E_juice = new Schema(
         name: {
             type: String,
         },
+        amount:{
+            type: Number,
+        },
         taste: {
             type: String,
         },
@@ -18,6 +21,9 @@ let E_juice = new Schema(
         nicotine: {
             type: Number,
         },
+        price:{
+            type: Number
+        }
     },
     {
         collection: "e_juices",

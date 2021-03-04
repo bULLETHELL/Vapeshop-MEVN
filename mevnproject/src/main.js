@@ -1,11 +1,13 @@
 import Vue from "vue";
 import App from "./App.vue";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap/"
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
 import VueCookie from "vue-cookie"
 Vue.use(VueCookie)
+import 'materialize-css/dist/css/materialize.min.css'
+import 'materialize-css/dist/js/materialize.min'
+import 'material-design-icons/iconfont/material-icons.css'
+import 'materialize-css'
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
@@ -23,6 +25,7 @@ import AddAddressComponent from "./components/AddAddressComponent.vue"
 import CreateOrderComponent from "./components/CreateOrderComponent"
 import RegisterUserComponent from "./components/RegisterUserComponent.vue"
 import LoginUserComponent from "./components/LoginUserComponent.vue"
+import EjuiceIndexComponent from "./components/EjuiceIndexComponent"
 
 
 const routes = [{
@@ -34,6 +37,11 @@ const routes = [{
         name: "addEjuice",
         path: "/add_ejuice",
         component: CreateE_juiceComponent,
+    },
+    {
+        name: "addOrder",
+        path: "/tanks_and_coils",
+        component: CreateOrderComponent
     },
     {
         name: "addAddress",
@@ -60,6 +68,11 @@ const routes = [{
         meta: {
             guest: true
         }
+    },
+    {
+        name: "indexEjuice",
+        path: "/e_juices",
+        component: EjuiceIndexComponent
     }
 ];
 

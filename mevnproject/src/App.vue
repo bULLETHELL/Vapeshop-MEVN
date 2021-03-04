@@ -1,83 +1,78 @@
 <template>
-  <div class="">
-    <nav
-      class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center"
-    >
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <router-link to="/profile" class="nav-link">My Profile</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/login" class="nav-link">Login</router-link>
-        </li>
-        <li class="nav-item">
-          <button
-            type="button"
-            class="nav-link btn btn-danger"
-            v-on:click="logout"
-          >
-            Logout
-          </button>
-        </li>
-      </ul>
+  <div>
+    <nav class="purple accent-3">
+      <div class="nav-wrapper">
+        <ul class="nav-mobile">
+          <li>
+            <router-link to="/"
+              >some nav
+              YYYYYYYYYYYYYYYYYYYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEETttt</router-link
+            >
+          </li>
+        </ul>
+      </div>
     </nav>
     <br />
-    <div class="d-flex justify-content-center">
+    <div class="center-align">
       <img src="./assets/test.png" />
     </div>
     <div class="container">
-      <div class="d-flex justify-content-between">
-        <div class="p-2"><img src="./assets/logo.png" /></div>
-        <form class="form-inline">
-          <input
-            class="form-control mr-sm-2"
-            placeholder="Search"
-            type="text"
-          />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            Search
-          </button>
-        </form>
-        <div class="dropdown">
-          <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenu1"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Dropdown
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <a class="dropdown-item" href="#!">Action</a>
-            <a class="dropdown-item" href="#!">Another action</a>
-          </div>
+      <div class="row">
+        <div class="col s4">
+          <img src="./assets/logo.png" />
+        </div>
+        <div class="col s4">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" required />
+              <label class="label-icon" for="search"
+                ><i class="material-icons">search</i></label
+              >
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+        <div class="col s2 offset-s2">
+          <ul class="collapsible">
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">shopping_cart</i>Shopping Cart
+              </div>
+              <div class="collapsible-body">
+                <span>Lorem ipsum dolor sit amet.</span>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <router-link to="/" class="nav-link">Home</router-link>
+      <nav class="purple accent-3">
+        <ul class="nav-mobile">
+          <li>
+            <router-link to="/">Home</router-link>
           </li>
-          <li class="nav-item">
-            <router-link to="/e-juice" class="nav-link">E-juice</router-link>
+          <li>
+            <router-link to="/e_juices">E-juice</router-link>
           </li>
-          <li class="nav-item">
-            <router-link to="/tanks_and_coils" class="nav-link"
-              >Tanks and Coils</router-link
-            >
+          <li>
+            <router-link to="/tanks_and_coils">Tanks and Coils</router-link>
           </li>
-          <li class="nav-item">
-            <router-link to="/batteries_and_mods" class="nav-link"
+          <li>
+            <router-link to="/batteries_and_mods"
               >Batteries and Mods</router-link
             >
           </li>
-          <li class="nav-item">
-            <router-link to="/accessories" class="nav-link"
-              >Accessories</router-link
-            >
+          <li>
+            <router-link to="/accessories">Accessories</router-link>
+          </li>
+          <li>
+            <router-link to="/add_ejuice">Add E-juice</router-link>
+          </li>
+          <li>
+            <router-link to="/add_address">Add Address</router-link>
+          </li>
+          <li>
+            <router-link to="/add_order">Add Order</router-link>
           </li>
         </ul>
       </nav>
@@ -85,6 +80,21 @@
         <router-view></router-view>
       </transition>
     </div>
+    <footer class="page-footer purple accent-3">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">A/M Leasing</h5>
+            <p class="grey-text text-lighten-4">Dronningensgade 107b st.t.v</p>
+            <p class="grey-text text-lighten-4">5000 Odense C, Denmark</p>
+            <p class="grey-text text-lighten-4">+45 67 68 91 02</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">© 2021 Steam n Smoke</div>
+      </div>
+    </footer>
   </div>
 </template>
 
