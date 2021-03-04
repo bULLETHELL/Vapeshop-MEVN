@@ -4,12 +4,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap/"
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
-
+import VueCookie from "vue-cookie"
+Vue.use(VueCookie)
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import VueAxios from "vue-axios";
 import axios from "axios";
+axios.defaults.withCredentials = true
 
 Vue.use(VueAxios, axios);
 

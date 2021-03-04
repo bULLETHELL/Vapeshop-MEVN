@@ -1,20 +1,35 @@
 <template>
   <div>
-    <h4>Login</h4>
     <form>
-      <label for="email">E-Mail Address</label>
-      <div>
-        <input id="email" type="email" v-model="email" required autofocus />
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+          v-model="email"
+          required
+        />
+        <small id="emailHelp" class="form-text text-muted"
+          >We'll never share your email with anyone else.</small
+        >
       </div>
-      <div>
+      <div class="form-group">
         <label for="password">Password</label>
-        <div>
-          <input id="password" type="password" v-model="password" required />
-        </div>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          v-model="password"
+          required
+        />
       </div>
-      <div>
-        <button type="submit" @click="handleSubmit">Login</button>
-      </div>
+      <button type="submit" @click="handleSubmit" class="btn btn-primary">
+        Login
+      </button>
     </form>
   </div>
 </template>
@@ -30,31 +45,29 @@ export default {
     handleSubmit(e) {
       e.preventDefault();
       if (this.password.length > 0) {
-        this.$http
-          .post("http://localhost:4000/user/login", {
-            email: this.email,
-            password: this.password,
-          })
+        this.axios
+          .post(
+            "http://localhost:4000/user/login",
+            {
+              email: this.email,
+              password: this.password,
+            },
+            { withCredentials: true }
+          )
           .then((response) => {
-            let is_admin = response.data.user.role == "admin";
-            localStorage.setItem("user", JSON.stringify(response.data.user));
-            localStorage.setItem("jwt", response.data.token);
-
-            if (localStorage.getItem("jwt") != null) {
+            console.log(response);
+            if (response.data.isAuth == true) {
+              console.log("logged in");
               this.$emit("loggedIn");
               if (this.$route.params.nextUrl != null) {
                 this.$router.push(this.$route.params.nextUrl);
-              } else {
-                if (is_admin) {
-                  this.$router.push("admin");
-                } else {
-                  this.$router.push("dashboard");
-                }
               }
+            } else {
+              console.log(response);
             }
           })
           .catch(function (error) {
-            console.error(error.response);
+            console.error(error);
           });
       }
     },

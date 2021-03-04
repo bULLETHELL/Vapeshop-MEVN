@@ -15,6 +15,7 @@ const AdminBro = require('admin-bro')
 const AdminBroExpress = require('@admin-bro/express')
 const AdminBroMongoose = require('@admin-bro/mongoose')
 const bcrypt = require('bcrypt')
+const cookieParser = require('cookie-parser')
 
 const E_juice = require('./models/e_juice.model')
 const User = require('./models/user.model')
@@ -83,7 +84,14 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
     cookiePassword: 'secret-password',
 })
 
-app.use(cors())
+app.use(cors({
+    origin: [
+        "http://localhost:8080",
+        "http://localhost:4000"
+    ],
+    credentials: true
+}))
+app.use(cookieParser())
 app.use(adminBro.options.rootPath, router)
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
