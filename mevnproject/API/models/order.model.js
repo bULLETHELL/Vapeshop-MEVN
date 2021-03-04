@@ -1,22 +1,18 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const userModel = require("./user.model");
 const Schema = mongoose.Schema;
-
+const address = "./address.model.js";
 let Order = new Schema(
     {
-        orderingCustomer: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        },
-        orderDate: {
-            type: Date,
-        },
-        products: {
-            type: [Object],
-        },
+        orderDate: Date,
+        products: [Object],
         deliveryAddress: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Address"
-        }
+            address: String,
+            city: String,
+            postalCode: Number,
+        },
+
+        orderingUser: userModel.schema,
     },
     {
         collection: "orders",

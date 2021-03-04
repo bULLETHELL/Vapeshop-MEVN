@@ -1,53 +1,51 @@
 <template>
     <div>
-        <h1>Add an E-juice</h1>
+        <h1>Finalise Order</h1>
         <form @submit.prevent="addOrder">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col s5">
                     <div class="form-group">
-                        <label>Ordering Customer:</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            v-model="order.orderingCustomer"
-                        />
+                        <label>Full Name:</label>
+                        <input type="text" placeholder="Full Name" class="form-control" v-model="order.FullName"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number:</label>
+                        <input type="number" placeholder="Phone Number" class="form-control" v-model="order.PhoneNumber"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address:</label>
+                        <input type="email" placeholder="Email Address" class="form-control" v-model="order.Email"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <input type="text" placeholder="Address" class="form-control" v-model="order.Address"/>
+                    </div>
+                    <div class="form-group">
+                        <label>City:</label>
+                        <input type="text" placeholder="City" class="form-control" v-model="order.City"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Postal Code:</label>
+                        <input type="Number" placeholder="Postal Code" class="form-control" v-model="order.PostalCode"/>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Order Date:</label>
-                        <input
-                            type="date"
-                            class="form-control"
-                            v-model="order.orderDate"
-                        />
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Products</label>
-                        <input
-                            type=""
-                            class="form-control"
-                            v-model="order.products"
-                        />
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>deliveryAddress:</label>
-                        <input
-                            type="number"
-                            class="form-control"
-                            v-model="order.deliveryAddress"
-                        />
-                    </div>
+                <div class="col s5 offset-s2">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="product in shoppingCart" :key="product.id">
+                                <td>{{ product.name }}</td>
+                                <td>{{ product.amount }}</td>
+                                <td><button class="btn btn-danger">Delete</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <br />
@@ -62,12 +60,32 @@
 export default {
     data() {
         return {
-            order: {},
+            shoppingCart: {
+                product1: {
+                    id: 1,
+                    amount: 1,
+                    name: "some ejuice1",
+                },
+                product2: {
+                    id: 2,
+                    amount: 5,
+                    name: "some ejuice2"
+                },
+                product3: {
+                    id: 3,
+                    amount: 9,
+                    name: "some ejuice3"
+                },
+            },
+            order: {
+                orderDate: new Date().toISOString().substr(0, 10)
+            },
         };
     },
     methods: {
         addOrder() {
             let uri = "http://localhost:4000/orders/add";
+            console.log(this.order)
             this.axios.post(uri, this.order).then(() => {
                 this.$router.push({ name: "orders" });
             });
