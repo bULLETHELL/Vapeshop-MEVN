@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const userModel = require("./user.model");
 const Schema = mongoose.Schema;
-const address = "./address.model.js";
 let Order = new Schema(
     {
         orderDate: Date,
@@ -12,7 +11,11 @@ let Order = new Schema(
             postalCode: Number,
         },
 
-        orderingUser: userModel.schema,
+        orderingCustomer: {
+            fullName: String,
+            phoneNumber: Number,
+            email: String,
+        },
     },
     {
         collection: "orders",

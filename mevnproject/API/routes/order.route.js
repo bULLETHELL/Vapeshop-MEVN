@@ -8,8 +8,22 @@ let Order = require("../models/order.model");
 
 // Defined store route
 orderRoutes.route("/add").post(function(req, res) {
-    let post = new Order(req.body);
-    post.save()
+    console.log(req.body)
+    let order = new Order({
+        orderDate: req.body.orderDate,
+        products: req.body.products,
+        deliveryAddress: {
+            address: req.body.address,
+            city: req.body.city,
+            postalCode: req.body.postalCode,
+        },
+        orderingCustomer: {
+            fullName: req.body.fullName,
+            phoneNumber: req.body.phoneNumber,
+            email: req.body.email,
+        },
+    })
+    order.save()
         .then(() => {
             res.status(200).json({
                 business: "business in added successfully",
