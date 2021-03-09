@@ -118,12 +118,13 @@
 <script>
 export default {
   data() {
-<<<<<<< HEAD
         return {
           cart: "",
+          isAuthenticated: this.$cookie.get("auth") != null ? true : false,
         };
     },
   mounted() {
+    window.M.AutoInit(); // That way, it is only initialized when the component is mounted
     if (localStorage.cart) {
       console.log(localStorage.cart)
       this.cart = localStorage.cart
@@ -132,11 +133,6 @@ export default {
       console.log("else")
       localStorage.setItem("cart", "");
     }
-=======
-    return {
-      isAuthenticated: this.$cookie.get("auth") != null ? true : false,
-    };
->>>>>>> 6e0e6d2f6a209acb75b1a1e5b755012cfa30b89f
   },
   methods: {
     logout() {
@@ -153,9 +149,6 @@ export default {
         .catch((err) => console.log(err));
     
     },
-  },
-  mounted() {
-    window.M.AutoInit(); // That way, it is only initialized when the component is mounted
   },
 };
 </script>
