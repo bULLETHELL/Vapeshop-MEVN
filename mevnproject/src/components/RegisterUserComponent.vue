@@ -73,18 +73,14 @@ export default {
             address: this.address,
             zipCode: this.zipCode,
             city: this.city,
+            role: "normal",
           })
           .then((response) => {
-            localStorage.setItem("user", JSON.stringify(response.data.user));
-            localStorage.setItem("jwt", response.data.token);
-
-            if (localStorage.getItem("jwt") != null) {
-              this.$emit("loggedIn");
-              if (this.$route.params.nextUrl != null) {
-                this.$router.push(this.$route.params.nextUrl);
-              } else {
-                this.$router.push("/");
-              }
+            if (response.data.auth != false) {
+              this.$router.push({ name: "home" });
+              this.$router.go();
+            } else {
+              alert("failed to register");
             }
           })
           .catch((error) => {

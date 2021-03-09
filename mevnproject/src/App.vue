@@ -4,10 +4,16 @@
       <div class="nav-wrapper">
         <ul class="nav-mobile">
           <li>
-            <router-link to="/"
-              >some nav
-              YYYYYYYYYYYYYYYYYYYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEETttt</router-link
-            >
+            <router-link to="/"></router-link>
+          </li>
+          <li v-if="!isAuthenticated">
+            <router-link to="/login">Login</router-link>
+          </li>
+          <li v-if="isAuthenticated">
+            <button v-on:click="logout">Logout</button>
+          </li>
+          <li v-if="isAuthenticated">
+            <router-link to="/profile">Profile</router-link>
           </li>
         </ul>
       </div>
@@ -112,6 +118,7 @@
 <script>
 export default {
   data() {
+<<<<<<< HEAD
         return {
           cart: "",
         };
@@ -125,6 +132,11 @@ export default {
       console.log("else")
       localStorage.setItem("cart", "");
     }
+=======
+    return {
+      isAuthenticated: this.$cookie.get("auth") != null ? true : false,
+    };
+>>>>>>> 6e0e6d2f6a209acb75b1a1e5b755012cfa30b89f
   },
   methods: {
     logout() {
@@ -135,10 +147,15 @@ export default {
           console.log(res);
           console.log(this.$cookie.get("auth"));
           this.$cookie.delete("auth");
+          this.$router.push({ name: "home" });
+          this.$router.go();
         })
         .catch((err) => console.log(err));
     
     },
+  },
+  mounted() {
+    window.M.AutoInit(); // That way, it is only initialized when the component is mounted
   },
 };
 </script>

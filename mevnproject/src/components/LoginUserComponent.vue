@@ -31,6 +31,7 @@
         Login
       </button>
     </form>
+    <a href="/register">Don't have a user? Register here</a>
   </div>
 </template>
 <script>
@@ -55,15 +56,12 @@ export default {
             { withCredentials: true }
           )
           .then((response) => {
-            console.log(response);
             if (response.data.isAuth == true) {
-              console.log("logged in");
               this.$emit("loggedIn");
-              if (this.$route.params.nextUrl != null) {
-                this.$router.push(this.$route.params.nextUrl);
-              }
+              this.$router.push({ name: "home" });
+              this.$router.go();
             } else {
-              console.log(response);
+              alert(response);
             }
           })
           .catch(function (error) {

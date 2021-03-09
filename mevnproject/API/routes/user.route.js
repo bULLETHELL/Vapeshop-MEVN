@@ -3,6 +3,7 @@
 const express = require("express")
 const userRoute = express.Router()
 const User = require('../models/user.model')
+const Order = require('../models/order.model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const config = require('../config')
@@ -65,10 +66,16 @@ userRoute.route('/login').post(function(req, res) {
 })
 
 userRoute.route('/profile').get(auth, function(req, res) {
-    res.json({
-        isAuth: true,
-        id: req.user._id,
-        email: req.user.email
+    Order.find({ 'orderingCustomer.email': req.user.email }, function(err, order) {
+        if (err) res.json(err)
+        else {
+            res.json({
+                isAuth: true,
+                id: req.user._id,
+                email: req.user.email,
+                order: order
+            })
+        }
     })
 })
 
