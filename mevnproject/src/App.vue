@@ -4,10 +4,16 @@
       <div class="nav-wrapper">
         <ul class="nav-mobile">
           <li>
-            <router-link to="/"
-              >some nav
-              YYYYYYYYYYYYYYYYYYYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEETttt</router-link
-            >
+            <router-link to="/"></router-link>
+          </li>
+          <li v-if="!isAuthenticated">
+            <router-link to="/login">Login</router-link>
+          </li>
+          <li v-if="isAuthenticated">
+            <button v-on:click="logout">Logout</button>
+          </li>
+          <li v-if="isAuthenticated">
+            <router-link to="/profile">Profile</router-link>
           </li>
         </ul>
       </div>
@@ -112,7 +118,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      isAuthenticated: this.$cookie.get("auth") != null ? true : false,
+    };
   },
   methods: {
     logout() {
@@ -123,9 +131,14 @@ export default {
           console.log(res);
           console.log(this.$cookie.get("auth"));
           this.$cookie.delete("auth");
+          this.$router.push({ name: "home" });
+          this.$router.go();
         })
         .catch((err) => console.log(err));
     },
+  },
+  mounted() {
+    window.M.AutoInit(); // That way, it is only initialized when the component is mounted
   },
 };
 </script>

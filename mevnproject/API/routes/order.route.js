@@ -84,4 +84,11 @@ orderRoutes.route("/delete/:id").delete(function(req, res) {
     });
 });
 
+orderRoutes.route("/get/:email").get(function(req, res) {
+    Order.find({ 'orderingCustomer.email': req.params.email }, function(err, order) {
+        if (err) res.json(err)
+        else res.json(order)
+    })
+})
+
 module.exports = orderRoutes;

@@ -19,6 +19,8 @@ const cookieParser = require('cookie-parser')
 
 const E_juice = require('./models/e_juice.model')
 const User = require('./models/user.model')
+const Order = require('./models/order.model')
+const Address = require('./models/address.model')
 
 AdminBro.registerAdapter(AdminBroMongoose)
 
@@ -31,7 +33,7 @@ const connection = mongoose.connect(config.DB, { useNewUrlParser: true }).then(
 const canModifyUsers = ({ currentAdmin }) => currentAdmin && currentAdmin.role == 'admin'
 
 const adminBro = new AdminBro({
-    resources: [E_juice, {
+    resources: [E_juice, Order, Address, {
         resource: User,
         options: {
             properties: {
@@ -87,7 +89,8 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
 app.use(cors({
     origin: [
         "http://localhost:8080",
-        "http://localhost:4000"
+        "http://localhost:4000",
+        "http://localhost:8081"
     ],
     credentials: true
 }))

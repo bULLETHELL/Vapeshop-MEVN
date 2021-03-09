@@ -26,6 +26,7 @@ import CreateOrderComponent from "./components/CreateOrderComponent"
 import RegisterUserComponent from "./components/RegisterUserComponent.vue"
 import LoginUserComponent from "./components/LoginUserComponent.vue"
 import EjuiceIndexComponent from "./components/EjuiceIndexComponent"
+import ProfileComponent from "./components/ProfileComponent"
 
 
 const routes = [{
@@ -73,6 +74,11 @@ const routes = [{
         name: "indexEjuice",
         path: "/e_juices",
         component: EjuiceIndexComponent
+    },
+    {
+        name: "profileUser",
+        path: "/profile",
+        component: ProfileComponent
     }
 ];
 
@@ -80,28 +86,19 @@ const router = new VueRouter({ mode: "history", routes: routes });
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (localStorage.getItem("jwt") == null) {
+        if (document.cookie.auth != null) {
             next({
                 path: '/login',
                 params: { nextUrl: to.fullPath }
             })
         } else {
-            let user = JSON.parse(localStorage.getItem('user'))
-            if (to.matched.some(record => record.meta.is_admin)) {
-                if (user.is_admin == 1) {
-                    next()
-                } else {
-                    next({ name: 'userboard' })
-                }
-            } else {
-                next()
-            }
+            next()
         }
     } else if (to.matched.some(record => record.meta.guest)) {
-        if (localStorage.getItem('jwt') == null) {
+        if (document.cookie.auth == null) {
             next()
         } else {
-            next({ name: 'userboard' })
+            next({ name: 'profile' })
         }
     } else {
         next()
