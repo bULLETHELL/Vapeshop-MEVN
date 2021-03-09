@@ -39,7 +39,7 @@
                 <i class="material-icons">shopping_cart</i>Shopping Cart
               </div>
               <div class="collapsible-body">
-                <span>Lorem ipsum dolor sit amet.</span>
+                <span>nib</span>
               </div>
             </li>
           </ul>
@@ -112,7 +112,19 @@
 <script>
 export default {
   data() {
-    return {};
+        return {
+          cart: "",
+        };
+    },
+  mounted() {
+    if (localStorage.cart) {
+      console.log(localStorage.cart)
+      this.cart = localStorage.cart
+    }
+    else{
+      console.log("else")
+      localStorage.setItem("cart", "");
+    }
   },
   methods: {
     logout() {
@@ -125,6 +137,7 @@ export default {
           this.$cookie.delete("auth");
         })
         .catch((err) => console.log(err));
+    
     },
   },
 };
