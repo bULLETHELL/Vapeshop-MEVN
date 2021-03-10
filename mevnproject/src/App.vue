@@ -1,8 +1,8 @@
 <template>
   <div>
-    <nav class="purple accent-3">
+    <nav>
       <div class="nav-wrapper">
-        <ul class="nav-mobile">
+        <ul class="nav-mobile right">
           <li>
             <router-link to="/"></router-link>
           </li>
@@ -10,10 +10,12 @@
             <router-link to="/login">Login</router-link>
           </li>
           <li v-if="isAuthenticated">
-            <button v-on:click="logout">Logout</button>
+            <router-link to="/profile">Profile</router-link>
           </li>
           <li v-if="isAuthenticated">
-            <router-link to="/profile">Profile</router-link>
+            <a v-on:click="logout" class="waves-effect waves-light btn"
+              >Log out</a
+            >
           </li>
         </ul>
       </div>
@@ -52,7 +54,7 @@
         </div>
       </div>
 
-      <nav class="purple accent-3">
+      <nav>
         <ul class="nav-mobile">
           <li>
             <router-link to="/">Home</router-link>
@@ -86,7 +88,7 @@
         <router-view></router-view>
       </transition>
     </div>
-    <footer class="page-footer purple accent-3">
+    <footer class="page-footer">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
@@ -145,7 +147,6 @@ export default {
           this.$router.go();
         })
         .catch((err) => console.log(err));
-    
     },
   },
 };

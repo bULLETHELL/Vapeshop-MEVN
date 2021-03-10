@@ -45,6 +45,7 @@ User.pre('save', function(next) {
     if (user.isModified('encryptedPassword')) {
         bcrypt.genSalt(salt, function(err, salt) {
             if (err) return next(err)
+            console.log(user)
 
             bcrypt.hash(user.encryptedPassword, salt, function(err, hash) {
                 if (err) return next(err)
@@ -52,6 +53,16 @@ User.pre('save', function(next) {
                 next()
             })
         })
+    } else {
+        next()
+    }
+})
+
+User.pre('findOneAndUpdate', function(next) {
+    if (this._update.$set.encryptedPassword) {
+        const hash = bcrypt.hashSync(this._update.$set.encryptedPassword, salt)
+        this._update.$set.encryptedPassword = hash
+        next()
     } else {
         next()
     }
