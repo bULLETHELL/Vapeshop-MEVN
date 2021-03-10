@@ -9,7 +9,9 @@
                     <div class="card-content">
                         <span class="card-title">{{e_juice.name}}</span>
                     </div>
-                    <div class="card-action">
+                    <div class="card-action ">
+                        <span>Price: {{e_juice.price}}</span>
+                        <button @click=addToBasket(ejuice._id) class="btn btn-danger right">Delete</button>
                     </div>
                 </div>
             </div>
@@ -38,6 +40,9 @@ export default {
                 this.e_juices.splice(this.e_juices.indexOf(id), 1);
             });
         },
+        addToBasket(item){
+            console.log(localStorage.cart, item)
+        }
     },
     mounted() {
         window.M.AutoInit(); // That way, it is only initialized when the component is mounted

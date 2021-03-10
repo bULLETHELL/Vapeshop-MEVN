@@ -45,7 +45,7 @@
                 <i class="material-icons">shopping_cart</i>Shopping Cart
               </div>
               <div class="collapsible-body">
-                <span>Lorem ipsum dolor sit amet.</span>
+                <span>nib</span>
               </div>
             </li>
           </ul>
@@ -118,9 +118,21 @@
 <script>
 export default {
   data() {
-    return {
-      isAuthenticated: this.$cookie.get("auth") != null ? true : false,
-    };
+        return {
+          cart: "",
+          isAuthenticated: this.$cookie.get("auth") != null ? true : false,
+        };
+    },
+  mounted() {
+    window.M.AutoInit(); // That way, it is only initialized when the component is mounted
+    if (localStorage.cart) {
+      console.log(localStorage.cart)
+      this.cart = localStorage.cart
+    }
+    else{
+      console.log("else")
+      localStorage.setItem("cart", "");
+    }
   },
   methods: {
     logout() {
@@ -135,10 +147,8 @@ export default {
           this.$router.go();
         })
         .catch((err) => console.log(err));
+    
     },
-  },
-  mounted() {
-    window.M.AutoInit(); // That way, it is only initialized when the component is mounted
   },
 };
 </script>
