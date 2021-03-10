@@ -73,6 +73,9 @@ userRoute.route('/profile').get(auth, function(req, res) {
                 isAuth: true,
                 id: req.user._id,
                 email: req.user.email,
+                address: req.user.address,
+                zipCode: req.user.zipCode,
+                city: req.user.city,
                 order: order
             })
         }
@@ -87,5 +90,26 @@ userRoute.route('/logout').get(auth, function(req, res) {
     });
 
 });
+
+userRoute.route('/edit').put(auth, function(req, res) {
+    User.findOneAndUpdate({
+        _id: req.user._id
+    }, {
+        $set: {
+            email: req.body.email,
+            encryptedPassword: req.body.password,
+            address: req.body.address,
+            zipCode: req.body.zipCode,
+            city: req.body.city
+        }
+    }, {
+        returnNewDocument: true
+    }).then(updatedDocument => {
+        if (updatedDocument) res.sendStatus(200)
+        else res.status(400).send('Failed')
+        return updatedDocument
+    }).catch(err => res.status(400).send(err))
+
+})
 
 module.exports = userRoute;
