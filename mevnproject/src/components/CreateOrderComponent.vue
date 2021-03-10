@@ -39,7 +39,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="product in shoppingCart" :key="product.id">
+                            <tr v-for="product in cart" :key="product._id">
                                 <td>{{ product.name }}</td>
                                 <td>{{ product.amount }}</td>
                                 <td><button class="btn btn-danger">Delete</button></td>
@@ -60,23 +60,7 @@
 export default {
     data() {
         return {
-            shoppingCart: {
-                product1: {
-                    id: 1,
-                    amount: 1,
-                    name: "some ejuice1",
-                },
-                product2: {
-                    id: 2,
-                    amount: 5,
-                    name: "some ejuice2"
-                },
-                product3: {
-                    id: 3,
-                    amount: 9,
-                    name: "some ejuice3"
-                },
-            },
+            cart: JSON.parse(localStorage.getItem("cart") || "[]"),
             order: {
                 orderDate: new Date().toISOString().substr(0, 10)
             },
@@ -85,7 +69,7 @@ export default {
     methods: {
         addOrder() {
             let uri = "http://localhost:4000/orders/add";
-            this.order.products = this.shoppingCart
+            this.order.products = this.cart
             this.axios.post(uri, this.order).then(() => {
                 this.$router.push({ name: "orders" });
             });

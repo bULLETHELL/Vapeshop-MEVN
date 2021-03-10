@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-action ">
                         <span>Price: {{e_juice.price}}</span>
-                        <button @click=addToBasket(ejuice._id) class="btn btn-danger right">Delete</button>
+                        <button @click=addToCart(e_juice) class="btn btn-danger right">Add To Cart</button>
                     </div>
                 </div>
             </div>
@@ -40,8 +40,11 @@ export default {
                 this.e_juices.splice(this.e_juices.indexOf(id), 1);
             });
         },
-        addToBasket(item){
-            console.log(localStorage.cart, item)
+        addToCart(item){
+            let cart = JSON.parse(localStorage.getItem("cart") || "[]")
+            cart.push(item)
+            localStorage.setItem("cart", JSON.stringify(cart));
+
         }
     },
     mounted() {

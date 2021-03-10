@@ -39,13 +39,13 @@
           </form>
         </div>
         <div class="col s2 offset-s2">
-          <ul class="collapsible">
+          <ul class="collapsible" @click="updateCart()">
             <li>
               <div class="collapsible-header">
                 <i class="material-icons">shopping_cart</i>Shopping Cart
               </div>
-              <div class="collapsible-body">
-                <span>nib</span>
+              <div class="collapsible-body" v-for="item in cart" :key="item._id">
+                <span>{{item.name}}</span>
               </div>
             </li>
           </ul>
@@ -116,25 +116,23 @@
 </style>
 
 <script>
+
 export default {
   data() {
         return {
-          cart: "",
+          cart: [],
           isAuthenticated: this.$cookie.get("auth") != null ? true : false,
         };
     },
   mounted() {
+    this.cart = JSON.parse(localStorage.getItem("cart") || "[]"),
     window.M.AutoInit(); // That way, it is only initialized when the component is mounted
-    if (localStorage.cart) {
-      console.log(localStorage.cart)
-      this.cart = localStorage.cart
-    }
-    else{
-      console.log("else")
-      localStorage.setItem("cart", "");
-    }
   },
   methods: {
+    updateCart() {
+      this.cart = JSON.parse(localStorage.getItem("cart") || "[]")
+      console.log(this.cart)
+    },
     logout() {
       let url = "http://localhost:4000/user/logout";
       this.axios
