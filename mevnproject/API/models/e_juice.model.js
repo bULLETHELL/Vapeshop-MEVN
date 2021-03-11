@@ -6,9 +6,6 @@ let E_juice = new Schema(
         name: {
             type: String,
         },
-        amount:{
-            type: Number,
-        },
         taste: {
             type: String,
         },
