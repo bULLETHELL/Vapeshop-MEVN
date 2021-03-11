@@ -48,7 +48,6 @@ e_juiceRoutes.route("/update/:id").post(function(req, res) {
         if (!post) res.status(404).send("data is not found");
         else {
             post.name = req.body.name;
-            post.amount = req.body.amount
             post.taste = req.body.taste;
             post.vg = req.body.vg;
             post.pg = req.body.pg;
