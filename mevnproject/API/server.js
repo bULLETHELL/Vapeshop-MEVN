@@ -21,6 +21,7 @@ const E_juice = require('./models/e_juice.model')
 const User = require('./models/user.model')
 const Order = require('./models/order.model')
 const Address = require('./models/address.model')
+const {EjuiceProduct, CoilProduct} = require('./models/product.model')
 
 AdminBro.registerAdapter(AdminBroMongoose)
 
@@ -33,7 +34,7 @@ const connection = mongoose.connect(config.DB, { useNewUrlParser: true }).then(
 const canModifyUsers = ({ currentAdmin }) => currentAdmin && currentAdmin.role == 'admin'
 
 const adminBro = new AdminBro({
-    resources: [E_juice, Order, Address, {
+    resources: [E_juice, Order, Address, EjuiceProduct, CoilProduct, {
         resource: User,
         options: {
             properties: {
