@@ -46,8 +46,12 @@
               <div class="collapsible-header">
                 <i class="material-icons">shopping_cart</i>Shopping Cart
               </div>
-              <div class="collapsible-body" v-for="item in cart" :key="item._id">
-                <span>{{item.name}}</span>
+              <div
+                class="collapsible-body"
+                v-for="item in cart"
+                :key="item._id"
+              >
+                <span>{{ item.name }}</span>
               </div>
             </li>
           </ul>
@@ -92,10 +96,18 @@
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
-            <h5 class="white-text">A/M Leasing</h5>
-            <p class="grey-text text-lighten-4">Dronningensgade 107b st.t.v</p>
-            <p class="grey-text text-lighten-4">5000 Odense C, Denmark</p>
-            <p class="grey-text text-lighten-4">+45 67 68 91 02</p>
+            <h5 class="white-text">Steam N Smoke</h5>
+            <p class="grey-text text-lighten-4">Faaborgvej 33</p>
+            <p class="grey-text text-lighten-4">5250 Odense, Denmark</p>
+            <p class="grey-text text-lighten-4">+45 30 51 54 03</p>
+          </div>
+          <div class="col l6 s12">
+            <h5>Contact Us</h5>
+            <ul>
+              <li>
+                <a class="grey-text text-lighten-3" href="/contact">Contact</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -111,6 +123,7 @@
 .fade-leave-active {
   transition: opacity 0.5s;
 }
+
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
@@ -118,22 +131,21 @@
 </style>
 
 <script>
-
 export default {
   data() {
-        return {
-          cart: [],
-          isAuthenticated: this.$cookie.get("auth") != null ? true : false,
-        };
-    },
+    return {
+      cart: [],
+      isAuthenticated: this.$cookie.get("auth") != null ? true : false,
+    };
+  },
   mounted() {
-    this.cart = JSON.parse(localStorage.getItem("cart") || "[]"),
-    window.M.AutoInit(); // That way, it is only initialized when the component is mounted
+    (this.cart = JSON.parse(localStorage.getItem("cart") || "[]")),
+      window.M.AutoInit(); // That way, it is only initialized when the component is mounted
   },
   methods: {
     updateCart() {
-      this.cart = JSON.parse(localStorage.getItem("cart") || "[]")
-      console.log(this.cart)
+      this.cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      console.log(this.cart);
     },
     logout() {
       let url = "http://localhost:4000/user/logout";

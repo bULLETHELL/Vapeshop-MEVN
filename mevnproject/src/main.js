@@ -27,6 +27,7 @@ import RegisterUserComponent from "./components/RegisterUserComponent.vue"
 import LoginUserComponent from "./components/LoginUserComponent.vue"
 import EjuiceIndexComponent from "./components/EjuiceIndexComponent"
 import ProfileComponent from "./components/ProfileComponent"
+import ContactComponent from "./components/ContactComponent"
 
 
 const routes = [{
@@ -79,6 +80,11 @@ const routes = [{
         name: "profileUser",
         path: "/profile",
         component: ProfileComponent
+    },
+    {
+        name: 'contactPage',
+        path: '/contact',
+        component: ContactComponent
     }
 ];
 
