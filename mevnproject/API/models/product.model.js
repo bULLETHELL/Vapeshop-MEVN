@@ -199,6 +199,10 @@ let BaseProduct = Product.discriminator('Base', new Schema({
             type: Number,
             required: true
         },
+        nicotine: {
+            type: Number,
+            required: true
+        },
         size: {
             type: Number,
             required: true

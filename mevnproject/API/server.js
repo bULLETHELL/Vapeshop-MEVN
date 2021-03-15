@@ -35,7 +35,7 @@ const connection = mongoose.connect(config.DB, { useNewUrlParser: true }).then(
 const canModifyUsers = ({ currentAdmin }) => currentAdmin && currentAdmin.role == 'admin'
 
 const adminBro = new AdminBro({
-    resources: [E_juice,
+    resources: [
         Order,
         Address,
         EjuiceProduct,
