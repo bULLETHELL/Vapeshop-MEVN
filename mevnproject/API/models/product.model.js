@@ -49,6 +49,7 @@ let CoilProduct = Product.discriminator('Coil', new Schema({
 }))
 
 module.exports = {
+    Product,
     EjuiceProduct, 
     CoilProduct
 }
