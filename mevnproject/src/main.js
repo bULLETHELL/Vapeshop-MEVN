@@ -28,6 +28,7 @@ import LoginUserComponent from "./components/LoginUserComponent.vue"
 import EjuiceIndexComponent from "./components/EjuiceIndexComponent"
 import ProfileComponent from "./components/ProfileComponent"
 import ContactComponent from "./components/ContactComponent"
+import TanksAndCoilsComponent from "./components/TanksAndCoilsComponent"
 
 
 const routes = [{
@@ -41,9 +42,9 @@ const routes = [{
         component: CreateE_juiceComponent,
     },
     {
-        name: "addOrder",
+        name: "tanksAndCoils",
         path: "/tanks_and_coils",
-        component: CreateOrderComponent
+        component: TanksAndCoilsComponent
     },
     {
         name: "addAddress",

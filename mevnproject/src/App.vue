@@ -59,35 +59,48 @@
       </div>
 
       <nav>
-        <ul class="nav-mobile">
-          <li>
-            <router-link to="/">Home</router-link>
-          </li>
-          <li>
-            <router-link to="/e_juices">E-juice</router-link>
-          </li>
-          <li>
-            <router-link to="/tanks_and_coils">Tanks and Coils</router-link>
-          </li>
-          <li>
-            <router-link to="/batteries_and_mods"
-              >Batteries and Mods</router-link
-            >
-          </li>
-          <li>
-            <router-link to="/accessories">Accessories</router-link>
-          </li>
-          <li>
-            <router-link to="/add_ejuice">Add E-juice</router-link>
-          </li>
-          <li>
-            <router-link to="/add_address">Add Address</router-link>
-          </li>
-          <li>
-            <router-link to="/add_order">Add Order</router-link>
-          </li>
-        </ul>
+        <div class="nav-wrapper">
+          <a href="#" data-target="mobile-nav" class="sidenav-trigger"
+            ><i class="material-icons">menu</i></a
+          >
+          <ul class="hide-on-med-and-down">
+            <li>
+              <router-link to="/">Home</router-link>
+            </li>
+            <li>
+              <router-link to="/e_juices">E-juice</router-link>
+            </li>
+            <li>
+              <router-link to="/tanks_and_coils">Tanks and Coils</router-link>
+            </li>
+            <li>
+              <router-link to="/batteries_and_mods"
+                >Batteries and Mods</router-link
+              >
+            </li>
+            <li>
+              <router-link to="/accessories">Accessories</router-link>
+            </li>
+          </ul>
+        </div>
       </nav>
+      <ul class="sidenav" id="mobile-nav">
+        <li>
+          <router-link to="/">Home</router-link>
+        </li>
+        <li>
+          <router-link to="/e_juices">E-juice</router-link>
+        </li>
+        <li>
+          <router-link to="/tanks_and_coils">Tanks and Coils</router-link>
+        </li>
+        <li>
+          <router-link to="/batteries_and_mods">Batteries and Mods</router-link>
+        </li>
+        <li>
+          <router-link to="/accessories">Accessories</router-link>
+        </li>
+      </ul>
       <transition name="fade">
         <router-view></router-view>
       </transition>
