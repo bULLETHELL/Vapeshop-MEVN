@@ -55,7 +55,7 @@
                 </thead>
                 <tbody v-for="item in cart" :key="item._id">
                   <tr>
-                    <td>{{item.name}}</td>
+                    <td>{{item[Object.keys(item)[0]].name}}</td>
                     <td>{{item.amount}}</td>
                     <td>130</td>
                   </tr>
