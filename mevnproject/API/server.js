@@ -11,6 +11,7 @@ const e_juiceRoute = require('./routes/e_juice.route');
 const addressRoute = require('./routes/address.route')
 const orderRoute = require('./routes/order.route')
 const userRoute = require('./routes/user.route')
+const productRoute = require('./routes/product.route')
 const AdminBro = require('admin-bro')
 const AdminBroExpress = require('@admin-bro/express')
 const AdminBroMongoose = require('@admin-bro/mongoose')
@@ -103,6 +104,7 @@ app.use('/e_juices', e_juiceRoute);
 app.use('/orders', orderRoute);
 app.use('/addresses', addressRoute);
 app.use('/user', userRoute)
+app.use('/products', productRoute)
 
 app.listen(PORT, function() {
     console.log('Server is running on Port:', PORT)

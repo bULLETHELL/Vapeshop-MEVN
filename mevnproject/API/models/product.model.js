@@ -3,7 +3,10 @@ const userModel = require("./user.model");
 const Schema = mongoose.Schema;
 
 let ProductSchema = new Schema({ 
-    amount: String 
+    amount: String,
+    price:{
+        type: Number
+    },
     },
     { 
         discriminatorKey: 'productType' 
@@ -29,9 +32,6 @@ let EjuiceProduct = Product.discriminator('Ejuice', new Schema({
             nicotine: {
                 type: Number,
             },
-            price:{
-                type: Number
-            },
             brand:{
                 type: String,
             },
@@ -45,11 +45,11 @@ let CoilProduct = Product.discriminator('Coil', new Schema({
         ohm: [Number],
         brand: String,
         productInformation: String,
-        price: Number,
     }
 }))
 
 module.exports = {
+    Product,
     EjuiceProduct, 
     CoilProduct
 }
