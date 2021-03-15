@@ -32,7 +32,7 @@ productRoutes.route('/getall').get(function(req, res){
 //get all products of given type
 productRoutes.route('/getbytype/:type').get(function(req, res){
     let type = req.params.type
-    Product.find({type: type}, function(err, products){
+    Product.find({type: productType}, function(err, products){
         if (err){
             res.json(err)
         }
