@@ -28,7 +28,9 @@ import LoginUserComponent from "./components/LoginUserComponent.vue"
 import EjuiceIndexComponent from "./components/EjuiceIndexComponent"
 import ProfileComponent from "./components/ProfileComponent"
 import ContactComponent from "./components/ContactComponent"
-import TanksAndCoilsComponent from "./components/TanksAndCoilsComponent"
+import ProductsComponent from "./components/ProductsComponent"
+import ProductTypeComponent from "./components/ProductTypeComponent"
+import ProductComponent from "./components/ProductComponent"
 
 
 const routes = [{
@@ -42,9 +44,19 @@ const routes = [{
         component: CreateE_juiceComponent,
     },
     {
-        name: "tanksAndCoils",
-        path: "/tanks_and_coils",
-        component: TanksAndCoilsComponent
+        name: "products",
+        path: "/products",
+        component: ProductsComponent,
+        children: [{
+            name: "productType",
+            path: ':product_type',
+            component: ProductTypeComponent,
+            children: [{
+                name: "product",
+                path: ':product_name',
+                component: ProductComponent
+            }]
+        }]
     },
     {
         name: "addAddress",
