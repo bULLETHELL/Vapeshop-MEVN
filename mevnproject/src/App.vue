@@ -32,10 +32,11 @@
         <div class="col s4">
           <form>
             <div class="input-field">
-              <input id="search" type="search" required />
               <label class="label-icon" for="search"
                 ><i class="material-icons">search</i></label
               >
+              <input list="productsList" id="search" type="search" required />
+              <datalist id="productsList"></datalist>
               <i class="material-icons">close</i>
             </div>
           </form>
@@ -159,12 +160,33 @@ export default {
     return {
       cart: [],
       isAuthenticated: this.$cookie.get("auth") != null ? true : false,
+      products: [],
     };
   },
   created() {
     console.log("hejsa"),
     this.cart = JSON.parse(localStorage.getItem("cart") || "[]")
     window.M.AutoInit(); // That way, it is only initialized when the component is mounted
+    let url = "http://localhost:4000/products/getall";
+    this.axios
+      .get(url)
+      .then((res) => {
+        this.products = res.data;
+
+        // Update Search Result datalist
+        var searchResultsDatalistElement = document.getElementById(
+          "productsList"
+        );
+
+        this.products.forEach((product) => {
+          var optionElement = document.createElement("option");
+          optionElement.value = product[Object.keys(product)[0]].name;
+          searchResultsDatalistElement.appendChild(optionElement);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
   methods: {
     updateCart() {
