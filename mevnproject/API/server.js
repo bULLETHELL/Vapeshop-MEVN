@@ -22,7 +22,7 @@ const E_juice = require('./models/e_juice.model')
 const User = require('./models/user.model')
 const Order = require('./models/order.model')
 const Address = require('./models/address.model')
-const {EjuiceProduct, CoilProduct} = require('./models/product.model')
+const { EjuiceProduct, CoilProduct, TankProduct, AromaProduct, BaseProduct, ModProduct, BatteryProduct } = require('./models/product.model')
 
 AdminBro.registerAdapter(AdminBroMongoose)
 
@@ -35,42 +35,53 @@ const connection = mongoose.connect(config.DB, { useNewUrlParser: true }).then(
 const canModifyUsers = ({ currentAdmin }) => currentAdmin && currentAdmin.role == 'admin'
 
 const adminBro = new AdminBro({
-    resources: [E_juice, Order, Address, EjuiceProduct, CoilProduct, {
-        resource: User,
-        options: {
-            properties: {
-                encryptedPassword: {
-                    isVisible: false,
-                },
-                password: {
-                    type: 'string',
-                    isVisible: {
-                        list: false,
-                        edit: true,
-                        filter: false,
-                        show: false,
+    resources: [E_juice,
+        Order,
+        Address,
+        EjuiceProduct,
+        CoilProduct,
+        TankProduct,
+        AromaProduct,
+        BaseProduct,
+        ModProduct,
+        BatteryProduct,
+        {
+            resource: User,
+            options: {
+                properties: {
+                    encryptedPassword: {
+                        isVisible: false,
+                    },
+                    password: {
+                        type: 'string',
+                        isVisible: {
+                            list: false,
+                            edit: true,
+                            filter: false,
+                            show: false,
+                        },
                     },
                 },
-            },
-            actions: {
-                new: {
-                    before: async(request) => {
-                        if (request.payload.password) {
-                            request.payload = {
-                                ...request.payload,
-                                encryptedPassword: await bcrypt.hash(request.payload.password, 10),
-                                password: undefined,
+                actions: {
+                    new: {
+                        before: async(request) => {
+                            if (request.payload.password) {
+                                request.payload = {
+                                    ...request.payload,
+                                    encryptedPassword: await bcrypt.hash(request.payload.password, 10),
+                                    password: undefined,
+                                }
                             }
-                        }
-                        return request
+                            return request
+                        },
                     },
+                    edit: { isAccessible: canModifyUsers },
+                    delete: { isAccessible: canModifyUsers },
+                    new: { isAccessible: canModifyUsers },
                 },
-                edit: { isAccessible: canModifyUsers },
-                delete: { isAccessible: canModifyUsers },
-                new: { isAccessible: canModifyUsers },
-            },
+            }
         }
-    }],
+    ],
     rootPath: '/admin',
 })
 
