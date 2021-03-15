@@ -1,4 +1,4 @@
-<template></template>
+<template><h1>hejsa</h1></template>
 <script>
 export default {
   data() {

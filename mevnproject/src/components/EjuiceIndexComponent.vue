@@ -7,7 +7,7 @@
                         <img src="../assets/ejuice.png" />
                     </div>
                     <div class="card-content">
-                        <span class="card-title">{{e_juice.name}}</span>
+                        <span class="card-title">{{e_juice.Ejuice.name}}</span>
                     </div>
                     <div class="card-action ">
                         <span>Price: {{e_juice.price}}</span>
@@ -27,7 +27,7 @@ export default {
         };
     },
     created() {
-        let uri = "http://localhost:4000/e_juices";
+        let uri = "http://localhost:4000/products/getbytype/Ejuice";
         this.axios.get(uri).then((response) => {
             this.e_juices = response.data;
         });

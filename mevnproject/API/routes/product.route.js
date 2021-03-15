@@ -21,6 +21,7 @@ productRoutes.route("/add").post(function(req, res){
 productRoutes.route('/getall').get(function(req, res){
     Product.find(function(err, products){
         if (err){
+            console.log(err)
             res.json(err)
         }
         else{

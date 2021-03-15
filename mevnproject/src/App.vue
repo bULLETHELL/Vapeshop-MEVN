@@ -41,20 +41,30 @@
           </form>
         </div>
         <div class="col s2 offset-s2">
-          <ul class="collapsible" @click="updateCart()">
-            <li>
-              <div class="collapsible-header">
-                <i class="material-icons">shopping_cart</i>Shopping Cart
-              </div>
-              <div
-                class="collapsible-body"
-                v-for="item in cart"
-                :key="item._id"
-              >
-                <span>{{ item.name }}</span>
-              </div>
-            </li>
-          </ul>
+          <a @click="updateCart()" class="waves-effect waves-light btn modal-trigger" href="#shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+          <div id="shoppingCart" class="modal">
+            <div class="modal-content">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody v-for="item in cart" :key="item._id">
+                  <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.amount}}</td>
+                    <td>130</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -151,9 +161,10 @@ export default {
       isAuthenticated: this.$cookie.get("auth") != null ? true : false,
     };
   },
-  mounted() {
-    (this.cart = JSON.parse(localStorage.getItem("cart") || "[]")),
-      window.M.AutoInit(); // That way, it is only initialized when the component is mounted
+  created() {
+    console.log("hejsa"),
+    this.cart = JSON.parse(localStorage.getItem("cart") || "[]")
+    window.M.AutoInit(); // That way, it is only initialized when the component is mounted
   },
   methods: {
     updateCart() {
