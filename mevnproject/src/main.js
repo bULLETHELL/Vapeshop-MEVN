@@ -47,16 +47,16 @@ const routes = [{
         name: "products",
         path: "/products",
         component: ProductsComponent,
-        children: [{
-            name: "productType",
-            path: ':product_type',
-            component: ProductTypeComponent,
-            children: [{
-                name: "product",
-                path: ':product_name',
-                component: ProductComponent
-            }]
-        }]
+    },
+    {
+        name: "productType",
+        path: "/products/:product_type",
+        component: ProductTypeComponent
+    },
+    {
+        name: "product",
+        path: "/products/:product_type/:product_name",
+        component: ProductComponent
     },
     {
         name: "addAddress",
