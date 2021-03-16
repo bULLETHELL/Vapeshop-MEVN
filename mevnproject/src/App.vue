@@ -42,7 +42,7 @@
           </form>
         </div>
         <div class="col s2 offset-s2">
-          <a @click="updateCart()" class="waves-effect waves-light btn modal-trigger" href="#shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+          <a class="waves-effect waves-light btn modal-trigger" href="#shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
           <div id="shoppingCart" class="modal">
             <div class="modal-content">
               <table>
@@ -55,7 +55,7 @@
                 </thead>
                 <tbody v-for="item in cart" :key="item._id">
                   <tr>
-                    <td>{{item[Object.keys(item)[0]].name}}</td>
+                    <td>{{item.name}}</td>
                     <td>{{item.amount}}</td>
                     <td>130</td>
                   </tr>
@@ -113,7 +113,7 @@
         </li>
       </ul>
       <transition name="fade">
-        <router-view></router-view>
+        <router-view @addToCart="updateCart"></router-view>
       </transition>
     </div>
     <footer class="page-footer">
@@ -164,7 +164,6 @@ export default {
     };
   },
   created() {
-    console.log("hejsa"),
     this.cart = JSON.parse(localStorage.getItem("cart") || "[]")
     window.M.AutoInit(); // That way, it is only initialized when the component is mounted
     let url = "http://localhost:4000/products/getall";
@@ -189,9 +188,28 @@ export default {
       });
   },
   methods: {
-    updateCart() {
-      this.cart = JSON.parse(localStorage.getItem("cart") || "[]");
-      console.log(this.cart);
+    updateCart(newItem) {
+      const cartItem = {
+        name: String,
+        amount: Number, 
+        item: Object
+      }
+      let newCartItem = Object.create(cartItem)
+      newCartItem.name = newItem[Object.keys(newItem)[0]].name
+      newCartItem.amount = 1
+      newCartItem.item = newItem
+      let newItemInCart = false
+      this.cart.forEach((cartItem) => {
+        if (cartItem.name == newCartItem.name){
+          cartItem.amount++
+          newItemInCart = true
+        }
+      })
+      if(!newItemInCart){
+          this.cart.push(newCartItem)
+        }
+      console.log(this.cart)
+      localStorage.setItem("cart", JSON.stringify(this.cart))
     },
     logout() {
       let url = "http://localhost:4000/user/logout";

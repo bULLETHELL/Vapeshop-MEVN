@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-action ">
                         <span>Price: {{e_juice.price}}</span>
-                        <button @click=addToCart(e_juice) class="btn btn-danger right">Add To Cart</button>
+                        <button @click="$emit('addToCart', e_juice)" class="btn btn-danger right">Add To Cart</button>
                     </div>
                 </div>
             </div>
