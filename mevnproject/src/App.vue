@@ -30,19 +30,28 @@
           <img src="./assets/logo.png" />
         </div>
         <div class="col s4">
-          <form>
-            <div class="input-field">
-              <label class="label-icon" for="search"
-                ><i class="material-icons">search</i></label
-              >
-              <input list="productsList" id="search" type="search" required />
-              <datalist id="productsList"></datalist>
-              <i class="material-icons">close</i>
-            </div>
-          </form>
+          <div class="input-field">
+            <label class="label-icon" for="search"
+              ><i class="material-icons">search</i></label
+            >
+            <input
+              list="productsList"
+              id="search"
+              type="search"
+              required
+              @keyup.enter="search"
+            />
+            <datalist id="productsList"></datalist>
+            <i class="material-icons">close</i>
+          </div>
         </div>
         <div class="col s2 offset-s2">
-          <a class="waves-effect waves-light btn modal-trigger" href="#shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+          <a
+            class="waves-effect waves-light btn modal-trigger"
+            href="#shoppingCart"
+          >
+            <i class="material-icons">shopping_cart</i>Shopping Cart</a
+          >
           <div id="shoppingCart" class="modal">
             <div class="modal-content">
               <table>
@@ -64,14 +73,16 @@
                 <tbody>
                   <tr>
                     <td>Total:</td>
-                    <td>{{cartAmount}}</td>
-                    <td>{{cartPrice}}</td>
+                    <td>{{cart.totalItems}}</td>
+                    <td>{{cart.totalPrice}}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div class="modal-footer">
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat"
+                >Agree</a
+              >
             </div>
           </div>
         </div>
@@ -166,8 +177,6 @@
 export default {
   data() {
     return {
-      cartAmount: 0,
-      cartPrice: 0,
       cart: [],
       isAuthenticated: this.$cookie.get("auth") != null ? true : false,
       products: [],
@@ -179,27 +188,7 @@ export default {
     }
     else{
       this.cart = {items: [], totalItems: 0, totalPrice: 0}
-      }
-      //console.log(this.cart)
-    /* this.cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    print(this.cart) */
-    /* const Cart = {
-      items: Array,
-      lenght: Number,
-      totalPrice: Number,
-      }
-
-    if(JSON.parse(localStorage.getItem("cart"))){
-      this.cart = JSON.parse(localStorage.getItem("cart"))
     }
-    else{
-      this.cart = Object.create(Cart)
-      this.cart.items = []
-      this.cart.lenght = 0
-      this.cart.totalPrice = 0
-      localStorage.setItem("cart", JSON.stringify(this.cart))
-      //console.log(this.cart)
-    }  */
     window.M.AutoInit(); // That way, it is only initialized when the component is mounted
     let url = "http://localhost:4000/products/getall";
     this.axios
@@ -261,6 +250,20 @@ export default {
           this.$router.go();
         })
         .catch((err) => console.log(err));
+    },
+    search(e) {
+      this.products.forEach((product) => {
+        if (product[Object.keys(product)[0]].name == e.currentTarget.value) {
+          this.$router.push({
+            name: "product",
+            params: {
+              product_type: product.productType,
+              product_name: product[Object.keys(product)[0]].name,
+            },
+          });
+        }
+      });
+      //this.$router.push("nigger");
     },
   },
 };
