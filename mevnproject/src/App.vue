@@ -62,11 +62,19 @@
                     <th>Price</th>
                   </tr>
                 </thead>
-                <tbody v-for="item in cart" :key="item._id">
+                <tbody v-for="cartItem in cart.items" :key="cartItem._id">
                   <tr>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.amount }}</td>
-                    <td>130</td>
+                    
+                    <td>{{cartItem.name}}</td>
+                    <td>{{cartItem.amount}}</td>
+                    <td>{{cartItem.price}}</td>
+                  </tr>
+                </tbody>
+                <tbody>
+                  <tr>
+                    <td>Total:</td>
+                    <td>{{cart.totalItems}}</td>
+                    <td>{{cart.totalPrice}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -209,7 +217,12 @@ export default {
     };
   },
   created() {
-    this.cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    if(JSON.parse(localStorage.getItem("cart"))){
+      this.cart = JSON.parse(localStorage.getItem("cart"))
+    }
+    else{
+      this.cart = {items: [], totalItems: 0, totalPrice: 0}
+    }
     window.M.AutoInit(); // That way, it is only initialized when the component is mounted
     let url = "http://localhost:4000/products/getall";
     this.axios
@@ -236,25 +249,28 @@ export default {
     updateCart(newItem) {
       const cartItem = {
         name: String,
-        amount: Number,
+        amount: Number, 
         item: Object,
-      };
-      let newCartItem = Object.create(cartItem);
-      newCartItem.name = newItem[Object.keys(newItem)[0]].name;
-      newCartItem.amount = 1;
-      newCartItem.item = newItem;
-      let newItemInCart = false;
-      this.cart.forEach((cartItem) => {
-        if (cartItem.name == newCartItem.name) {
-          cartItem.amount++;
-          newItemInCart = true;
-        }
-      });
-      if (!newItemInCart) {
-        this.cart.push(newCartItem);
+        price: Number
       }
-      console.log(this.cart);
-      localStorage.setItem("cart", JSON.stringify(this.cart));
+      let newCartItem = Object.create(cartItem)
+      newCartItem.name = newItem[Object.keys(newItem)[0]].name
+      newCartItem.amount = 1
+      newCartItem.price = newItem.price
+      newCartItem.item = newItem
+
+      let newItemInCart = false
+      this.cart.items.forEach((cartItem) => {
+        if (cartItem.name == newCartItem.name){
+          cartItem.amount++
+          cartItem.price = cartItem.item.price * cartItem.amount
+          newItemInCart = true
+        }
+      })
+      if(!newItemInCart){
+          this.cart.items.push(newCartItem)
+        }
+      localStorage.setItem("cart", JSON.stringify(this.cart))
     },
     logout() {
       let url = "http://localhost:4000/user/logout";
