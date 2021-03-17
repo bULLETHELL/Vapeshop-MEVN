@@ -78,7 +78,7 @@ const adminBro = new AdminBro({
                             return request
                         },
                     }, */
-                    edit: { isAccessible: true },
+                    edit: { isAccessible: canModifyUsers },
                     delete: { isAccessible: canModifyUsers },
                     new: { isAccessible: canModifyUsers },
                 },
