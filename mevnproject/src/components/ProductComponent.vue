@@ -234,7 +234,7 @@ export default {
       product: null,
     };
   },
-  created() {
+  mounted() {
     window.M.AutoInit();
     let decodedProductType = decodeURIComponent(
       this.$route.params.product_type

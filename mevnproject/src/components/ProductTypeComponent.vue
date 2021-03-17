@@ -40,7 +40,7 @@ export default {
       productsWithProductType: [],
     };
   },
-  created() {
+  mounted() {
     window.M.AutoInit();
     let url = `http://localhost:4000/products/getbytype/${this.$route.params.product_type}`;
     this.axios
