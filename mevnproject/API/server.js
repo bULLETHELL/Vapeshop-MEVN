@@ -51,21 +51,24 @@ const adminBro = new AdminBro({
                 properties: {
                     encryptedPassword: {
                         isVisible: false,
-                    },
-                    password: {
-                        type: 'string',
-                        isVisible: {
-                            list: false,
-                            edit: true,
-                            filter: false,
-                            show: false,
-                        },
-                    },
+                    }
+                    /*,
+                                        password: {
+                                            type: 'string',
+                                            isVisible: {
+                                                list: false,
+                                                edit: true,
+                                                filter: false,
+                                                show: false,
+                                            },
+                                        },
+                                        */
                 },
+
                 actions: {
-                    new: {
+                    /* new: {
                         before: async(request) => {
-                            if (request.payload.password) {
+                            if (request.payload.password != "") {
                                 request.payload = {
                                     ...request.payload,
                                     encryptedPassword: await bcrypt.hash(request.payload.password, 10),
@@ -74,8 +77,8 @@ const adminBro = new AdminBro({
                             }
                             return request
                         },
-                    },
-                    edit: { isAccessible: canModifyUsers },
+                    }, */
+                    edit: { isAccessible: true },
                     delete: { isAccessible: canModifyUsers },
                     new: { isAccessible: canModifyUsers },
                 },
@@ -90,7 +93,9 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
         const user = await User.findOne({ email })
         if (user) {
             const matched = await bcrypt.compare(password, user.encryptedPassword)
-            if (matched && user.role != 'normal') {
+            if (matched
+                /* && user.role != "normal"*/
+            ) {
                 return user
             }
         }
