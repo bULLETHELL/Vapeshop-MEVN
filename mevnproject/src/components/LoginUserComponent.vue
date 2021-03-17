@@ -61,7 +61,7 @@ export default {
               this.$router.push({ name: "home" });
               this.$router.go();
             } else {
-              alert(response);
+              alert(response.data.message);
             }
           })
           .catch(function (error) {

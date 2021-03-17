@@ -58,7 +58,7 @@ User.pre('save', function(next) {
     }
 })
 
-User.pre('findOneAndUpdate', function(next) {
+/*User.pre('findOneAndUpdate', function(next) {
     if (this._update.$set.encryptedPassword) {
         const hash = bcrypt.hashSync(this._update.$set.encryptedPassword, salt)
         this._update.$set.encryptedPassword = hash
@@ -66,7 +66,7 @@ User.pre('findOneAndUpdate', function(next) {
     } else {
         next()
     }
-})
+})*/
 
 User.methods.comparePassword = function(password, cb) {
     bcrypt.compare(password, this.encryptedPassword, function(err, isMatch) {
