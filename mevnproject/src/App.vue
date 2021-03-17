@@ -80,8 +80,8 @@
               </table>
             </div>
             <div class="modal-footer">
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat"
-                >Agree</a
+              <a href="/add_order" class="modal-close waves-effect waves-green btn"
+                >Go to Checkout</a
               >
             </div>
           </div>
@@ -270,7 +270,15 @@ export default {
       if(!newItemInCart){
           this.cart.items.push(newCartItem)
         }
+      this.cart.totalItems= 0
+      this.cart.totalPrice = 0
+      this.cart.items.forEach((cartItem) => {
+        
+        this.cart.totalItems += cartItem.amount
+        this.cart.totalPrice += cartItem.price
+      })
       localStorage.setItem("cart", JSON.stringify(this.cart))
+
     },
     logout() {
       let url = "http://localhost:4000/user/logout";
