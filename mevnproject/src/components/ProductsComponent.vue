@@ -45,7 +45,8 @@ export default {
       tanks: [],
     };
   },
-  created() {
+  mounted() {
+    window.M.AutoInit();
     let url = "http://localhost:4000/products/getall";
     this.axios
       .get(url)

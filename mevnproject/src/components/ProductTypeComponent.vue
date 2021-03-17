@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ $route.params.product_type }}</h1>
+    <h1>{{ $route.params.product_type }}s</h1>
     <div>
       <div
         v-for="product in productsWithProductType"
@@ -40,7 +40,19 @@ export default {
       productsWithProductType: [],
     };
   },
-  mounted() {
+  created() {
+    window.M.AutoInit();
+    let url = `http://localhost:4000/products/getbytype/${this.$route.params.product_type}`;
+    this.axios
+      .get(url)
+      .then((res) => {
+        this.productsWithProductType = res.data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+  updated() {
     let url = `http://localhost:4000/products/getbytype/${this.$route.params.product_type}`;
     this.axios
       .get(url)

@@ -79,7 +79,50 @@
           </div>
         </div>
       </div>
-
+      <ul id="productsDropdown" class="dropdown-content">
+        <li>
+          <router-link
+            :to="{ name: 'productType', params: { product_type: 'Ejuice' } }"
+            >Ejuices</router-link
+          >
+        </li>
+        <li>
+          <router-link
+            :to="{ name: 'productType', params: { product_type: 'Aroma' } }"
+            >Aromas</router-link
+          >
+        </li>
+        <li>
+          <router-link
+            :to="{ name: 'productType', params: { product_type: 'Mod' } }"
+            >Mods</router-link
+          >
+        </li>
+        <li>
+          <router-link
+            :to="{ name: 'productType', params: { product_type: 'Coil' } }"
+            >Coils</router-link
+          >
+        </li>
+        <li>
+          <router-link
+            :to="{ name: 'productType', params: { product_type: 'Tank' } }"
+            >Tanks</router-link
+          >
+        </li>
+        <li>
+          <router-link
+            :to="{ name: 'productType', params: { product_type: 'Battery' } }"
+            >Batteries</router-link
+          >
+        </li>
+        <li>
+          <router-link
+            :to="{ name: 'productType', params: { product_type: 'Base' } }"
+            >Bases</router-link
+          >
+        </li>
+      </ul>
       <nav>
         <div class="nav-wrapper">
           <a href="#" data-target="mobile-nav" class="sidenav-trigger"
@@ -90,18 +133,9 @@
               <router-link to="/">Home</router-link>
             </li>
             <li>
-              <router-link to="/e_juices">E-juice</router-link>
-            </li>
-            <li>
-              <router-link to="/tanks_and_coils">Tanks and Coils</router-link>
-            </li>
-            <li>
-              <router-link to="/batteries_and_mods"
-                >Batteries and Mods</router-link
+              <a class="dropdown-trigger" data-target="productsDropdown"
+                >Products<i class="material-icons right">arrow_drop_down</i></a
               >
-            </li>
-            <li>
-              <router-link to="/accessories">Accessories</router-link>
             </li>
           </ul>
         </div>
