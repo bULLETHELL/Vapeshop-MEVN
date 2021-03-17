@@ -23,7 +23,12 @@
         </div>
         <div class="row">
           <b v-if="product.amount == 0">Out of stock</b>
-          <a v-else class="waves-effect waves-light btn">Add to cart</a>
+          <a
+            v-else
+            class="waves-effect waves-light btn"
+            @click="$emit('addToCart', product)"
+            >Add to cart</a
+          >
         </div>
         <div class="row">
           <b>Product Information</b>
@@ -42,7 +47,12 @@
         <div class="row"></div>
         <div class="row">
           <b v-if="product.amount == 0">Out of stock</b>
-          <a v-else class="waves-effect waves-light btn">Add to cart</a>
+          <a
+            v-else
+            @click="$emit('addToCart', product)"
+            class="waves-effect waves-light btn"
+            >Add to cart</a
+          >
         </div>
         <div class="row">
           <b>Product Information</b>
@@ -81,7 +91,12 @@
         </div>
         <div class="row">
           <b v-if="product.amount == 0">Out of stock</b>
-          <a v-else class="waves-effect waves-light btn">Add to cart</a>
+          <a
+            v-else
+            @click="$emit('addToCart', product)"
+            class="waves-effect waves-light btn"
+            >Add to cart</a
+          >
         </div>
         <div class="row">
           <b>Product Information</b>
@@ -99,7 +114,12 @@
         </div>
         <div class="row">
           <b v-if="product.amount == 0">Out of stock</b>
-          <a v-else class="waves-effect waves-light btn">Add to cart</a>
+          <a
+            v-else
+            @click="$emit('addToCart', product)"
+            class="waves-effect waves-light btn"
+            >Add to cart</a
+          >
         </div>
         <div class="row">
           <b>Product Information</b>
@@ -133,7 +153,12 @@
         </div>
         <div class="row">
           <b v-if="product.amount == 0">Out of stock</b>
-          <a v-else class="waves-effect waves-light btn">Add to cart</a>
+          <a
+            v-else
+            @click="$emit('addToCart', product)"
+            class="waves-effect waves-light btn"
+            >Add to cart</a
+          >
         </div>
         <div class="row">
           <b>Product Information</b>
@@ -151,7 +176,12 @@
         </div>
         <div class="row">
           <b v-if="product.amount == 0">Out of stock</b>
-          <a v-else class="waves-effect waves-light btn">Add to cart</a>
+          <a
+            v-else
+            @click="$emit('addToCart', product)"
+            class="waves-effect waves-light btn"
+            >Add to cart</a
+          >
         </div>
         <div class="row">
           <b>Product Information</b>
@@ -168,7 +198,12 @@
         <div class="row"></div>
         <div class="row">
           <b v-if="product.amount == 0">Out of stock</b>
-          <a v-else class="waves-effect waves-light btn">Add to cart</a>
+          <a
+            v-else
+            @click="$emit('addToCart', product)"
+            class="waves-effect waves-light btn"
+            >Add to cart</a
+          >
         </div>
         <div class="row">
           <b>Product Information</b>
